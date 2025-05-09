@@ -17,6 +17,9 @@ Repos Oficiales:
 ```
 git clone https://github.com/mmppppss/config
 cp config/* ~/.config/ -r
+
+ln .config/zsh/zshrc .zshrc -s
+
 ```
 
 algunos shortcuts de i3
