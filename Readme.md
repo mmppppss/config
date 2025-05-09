@@ -34,7 +34,7 @@ mod+shift+t = thunar
 
 mod+shift+esc = shutdowm
 
-printsc = scrot screenshoot
+printsc = xfce4-screenshooter
 
 
 Los fondos de pantalla provienen de: https://gruvbox-wallpapers.pages.dev/
