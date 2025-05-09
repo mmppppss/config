@@ -1,0 +1,6 @@
+vim.cmd("imap <C-l> <Plug>(coc-snippets-expand)")
+vim.cmd("vmap <C-j> <Plug>(coc-snippets-select)")
+vim.cmd("let g:coc_snippet_next = '<c-j>'")
+vim.cmd("let g:coc_snippet_prev = '<c-k>'")
+vim.cmd("imap <C-j> <Plug>(coc-snippets-expand-jump)")
+vim.cmd("xmap <C-x>  <Plug>(coc-convert-snippet)")

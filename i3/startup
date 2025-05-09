@@ -1,0 +1,34 @@
+#exec setxkbmap es dvorak
+
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+#start clipboard
+exec --no-startup-id xclip -selection clipboard
+
+# Allow clicking witht the touchpad
+exec --no-startup-id synclient TapButton1=1
+
+# Start compton
+exec --no-startup-id compton -b
+#start picom
+#exec --no-startup-id picom -b
+
+# Set the background
+exec --no-startup-id bash $HOME/.config/scripts/setWall.sh
+
+# Start yabar
+#exec --no-startup-id yabar
+
+# Set screen blanking off
+exec --no-startup-id xset s off
+
+# Disable DPMS
+exec --no-startup-id xset -dpms
+
+exec --no-startup-id xinput set-prop 12 279 1
+
+#start wired notification
+exec --no-startup-id wired
+
+exec --no-startup-id nm-applet
+
+#exec --no-startup-id xfce4-panel

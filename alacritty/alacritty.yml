@@ -1,0 +1,32 @@
+window:
+      #style: regular
+  opacity: 0.9
+font:
+  normal:
+    family: Free Mono
+# Nombre del tema: Alacritty Gruvbox
+colors:
+  # Colores generales
+  primary:
+    background: '0x282828'     # Fondo principal
+    foreground: '0xebdbb2'     # Texto principal
+  normal:
+    black:   '0x282828'        # Texto normal en fondo principal
+    red:     '0xcc241d'        # Texto resaltado en fondo principal
+    green:   '0x98971a'        # Texto secundario en fondo principal
+    yellow:  '0xd79921'        # Resaltado en fondo principal
+    blue:    '0x458588'        # Bordes y acentos en fondo principal
+    magenta: '0xb16286'        # Ruta en fondo principal
+    cyan:    '0x689d6a'        # Comandos en fondo principal
+    white:   '0xa89984'        # Texto seleccionado en fondo principal
+
+  # Colores brillantes
+  bright:
+    black:   '0x928374'        # Texto normal en fondo brillante
+    red:     '0xfb4934'        # Texto resaltado en fondo brillante
+    green:   '0xb8bb26'        # Texto secundario en fondo brillante
+    yellow:  '0xfabd2f'        # Resaltado en fondo brillante
+    blue:    '0x83a598'        # Bordes y acentos en fondo brillante
+    magenta: '0xd3869b'        # Ruta en fondo brillante
+    cyan:    '0x8ec07c'        # Comandos en fondo brillante
+    white:   '0xebdbb2'        # Texto seleccionado en fondo brillante

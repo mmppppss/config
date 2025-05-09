@@ -1,0 +1,105 @@
+# My i3status configuration file.
+# Using ideas from
+# - https://github.com/addy-dclxvi/i3-starterpack
+# - https://github.com/steffenfritz/i3status_config
+# and possibly others.
+# Needs font "NotoSans Nerd Font", see https://www.nerdfonts.com/
+# (On Arch: "trizen -S nerd-fonts-hack nerd-fonts-noto")
+# See "man i3status" for documentation.
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+# Set Kate and Konsole to use "Hack Nerd Font" to correctly display the  Unicode characters here.
+# Use XFCE's Mousepad (c-s-u, ffff) to edit symbols.
+
+general {
+		output_format="i3bar"
+		colors = true
+        interval = 5
+}
+
+#order += "cpu_temperature 0"
+order += "cpu_usage"
+#order += "load"
+order += "memory"
+#order += "disk /"
+order += "wireless _first_"
+order += "ethernet _first_"
+order += "volume master"
+#order += "battery all"
+order += "tztime local"
+cpu_temperature 0 {
+        # f2c9, nf-fa-thermometer_2
+    	format = " %degrees °C"
+        path = /sys/class/thermal/thermal_zone0/temp
+}
+
+cpu_usage {
+        # f799, nf-mdi-gauge
+        format = " %usage "
+}
+
+load {
+        # f627, nf-mdi-chart_bar
+        format = " %1min "
+}
+
+memory {
+        # f85a, nf-mdi-memory
+        format = " %used "
+        threshold_degraded = "1G "
+        threshold_critical = "512M"
+}
+
+disk "/" {
+        # faed, nf-mdi-disk
+        format = "﫭 %used / %avail"
+        threshold_type = "percentage"
+        low_threshold = "5"
+}
+
+wireless _first_ {
+        # faa8, nf-mdi-wifi
+        format_up = "%quality %ip " 
+        # faa9, nf-mdi-wifi_off
+        format_down = ""
+        color_good = '#d8dee8'
+        color_bad = '#d8dee8'
+
+}
+
+ethernet _first_ {
+        # f817, nf-mdi-lan_connect
+        format_up = "%ip "
+        # f818, nf-mdi-lan_disconnect
+        format_down = ""
+        color_good = '#d8dee8'
+        color_bad = '#d8dee8'
+}
+
+volume master {
+        # fa7d, nf-mdi-volume_high
+        format = " %volume 🔊"
+        # fc5d, nf-mdi-volume_mutifuer
+        format_muted = " %volume 🔇️"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
+
+battery all {
+        format = "%status %percentage %remaining"
+        integer_battery_capacity = true
+        threshold_type = "percentage"
+        low_threshold = "15"
+        # f58e nf-mdi-battery_plus; f58b nf-mdi-battery_minus; f578 nf-mdi-battery
+        status_chr = ""
+        status_bat = " BAT"
+        status_full = " FULL"
+}
+
+tztime local {
+        format = "%a %d, %m/%Y %H:%M "
+		timezone = "America/La_Paz"
+}
