@@ -22,7 +22,7 @@ local plugins = {
 		dependencies = { 'nvim-tree/nvim-web-devicons', opt = true }
 	},
 	'Exafunction/codeium.vim',
-	'github/copilot.vim',
+--	'github/copilot.vim',
 	{
 		'windwp/nvim-autopairs',
 	},
