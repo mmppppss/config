@@ -1,11 +1,13 @@
-require("plugins.coc")
+--require("plugins.coc")
 require("plugins.treesitter")
-require("plugins.coc-snip")
+--require("plugins.coc-snip")
 require("plugins.lualine")
 require("plugins.gruvbox")
 require("plugins.ibl")
 require("plugins.codeium")
-require("plugins.noice")
+require("plugins.mason")
+require("plugins.lsp")
+--require("plugins.noice")
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.confirm = true
