@@ -8,7 +8,9 @@ floating_modifier $mod
 
 bindsym $mod+Return exec alacritty; split toggle
 bindsym $mod+Shift+t exec thunar
+bindsym $mod+Shift+k exec caja
 bindsym $mod+Shift+f exec firefox
+bindsym $mod+Shift+o exec opera
 bindsym $mod+Shift+z exec zen-browser
 bindsym $mod+Shift+m exec thunderbird
 
@@ -152,9 +154,9 @@ bar{
 		#active_workspace_text #00FF00
 		#urgent_workspace #00FF00
 	}
-	mode hide
-	hidden_state hide
-	modifier $mod
+	#mode hide
+	#hidden_state hide
+	#modifier $mod
 }
 
 # resize window (you can also use the mouse for that)

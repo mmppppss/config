@@ -19,7 +19,7 @@ vim.opt.backup = false
 vim.opt.writebackup = false
 vim.opt.updatetime = 300
 vim.opt.signcolumn = "yes"
-vim.o.clipboard="unnamedplus"
+vim.o.clipboard = "unnamedplus"
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
 vim.cmd([[set termguicolors]])

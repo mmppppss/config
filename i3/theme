@@ -1,7 +1,7 @@
 # Font for window titles. Will also be used by the bar unless a different font
 #font pango:Monaco 16
 font pango:FreeMono 16
-#for_window [class=".*"] title_format "<span font='FreeMono 9'> > %title </span>"
+#for_window [class=".*"] title_format "<span font='FreeMono 9'> > %title | %class </span>"
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 #font pango:DejaVu Sans Mono 10
 #font pango:DejaVu Sans Mono, Terminus Bold Semi-Condensed 11
@@ -17,9 +17,9 @@ client.placeholder          #000000     #FFFFFF         #E1D3A4     #000000     
 client.background           #FFFFFF
 
 for_window [class="^.*"] border pixel 0px
-for_window [title="clock"] floating enable
-for_window [title="clock"] move absolute position 1250px 680px
-for_window [title="clock"] sticky enable
+#for_window [title="clock"] floating enable
+#for_window [title="clock"] move absolute position 1250px 680px
+#for_window [title="clock"] sticky enable
 #for_window [class="^.*"] border normal 0px
 for_window [window_role="About"] floating enable
 for_window [class="Tk"] floating enable 
@@ -28,6 +28,7 @@ for_window [title="Authy"] floating enable
 for_window [class="Frame"] floating enable
 for_window [class="Plank"] floating enable
 for_window [title="plank"] floating enable width 0
+for_window [class="abarrotes-main"] floating enable width 0
 gaps outer 5
 gaps inner 5
 
