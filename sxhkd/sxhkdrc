@@ -1,0 +1,146 @@
+#
+# sxhkdrc adaptado de tu config i3
+#
+
+# ======================
+# Lanzadores
+# ======================
+
+# terminal
+super + Return
+    alacritty
+
+# gestores de archivos
+super + shift + t
+    thunar
+super + shift + k
+    caja
+
+# navegadores / apps
+super + shift + f
+    firefox
+super + shift + o
+    opera
+super + shift + z
+    zen-browser
+super + shift + m
+    thunderbird
+
+# rofi
+super + d
+    rofi -show drun
+super + shift + d
+    i3-dmenu-desktop
+super + Tab
+    rofi -show window
+
+# scripts personalizados
+super + Insert
+    bash ~/.config/scripts/setWall.sh
+
+# ======================
+# Manejo de ventanas
+# ======================
+
+# cerrar / matar ventana
+super + shift + q
+    bspc node -c
+
+# alternar monocle (fullscreen estilo i3)
+super + f
+    bspc node -t fullscreen
+
+# alternar flotante
+super + shift + space
+    bspc node -t floating
+
+# cambiar foco entre tiling / floating
+super + space
+    bspc node -f last
+
+# foco direccional (flechas)
+super + {Left,Down,Up,Right}
+    bspc node -f {west,south,north,east}
+
+# mover ventana en dirección
+super + shift + {Left,Down,Up,Right}
+    bspc node -s {west,south,north,east}
+
+# layouts (bspwm solo monocle/tiled)
+super + m
+    bspc desktop -l next
+
+# ======================
+# Workspaces (desktops)
+# ======================
+
+# ir a escritorio
+super + {1-9,0}
+    bspc desktop -f {1-9,10}
+
+# mover ventana a escritorio
+super + shift + {1-9,0}
+    bspc node -d {1-9,10}
+
+# ======================
+# Sistema
+# ======================
+
+# recargar sxhkd
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# reiniciar bspwm
+super + shift + r
+    bspc wm -r
+
+# salir de sesión (nagbar i3 → reemplazo con rofi powermenu)
+super + shift + Home
+    sh ~/.config/rofi/applets/applets/powermenu.sh
+
+# suspender
+super + shift + End
+    systemctl suspend
+
+# apagar
+super + shift + Delete
+    systemctl poweroff
+
+# ======================
+# Multimedia
+# ======================
+
+# volumen
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +5%
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# volumen con Alt
+alt + {Next,Prior}
+    pactl set-sink-volume @DEFAULT_SINK@ {+5%,-5%}
+alt + Pause
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# brillo
+XF86MonBrightnessUp
+    brightnessctl s +1%
+XF86MonBrightnessDown
+    brightnessctl s 1-
+super + Next
+    brightnessctl s +1%
+super + Prior
+    brightnessctl s 1-
+
+# ======================
+# Screenshots
+# ======================
+
+# fullscreen
+Print
+    xfce4-screenshooter -f -s ~/Pictures/$(tr -dc A-Za-z0-9 </dev/urandom | head -c 10).png
+# región
+shift + Print
+    xfce4-screenshooter -r -s ~/Pictures/$(tr -dc A-Za-z0-9 </dev/urandom | head -c 10).png
