@@ -47,16 +47,17 @@ super + shift + q
     bspc node -c
 
 # alternar monocle (fullscreen estilo i3)
-super + f
+super + space
     bspc node -t fullscreen
 
 # alternar flotante
-super + shift + space
+super + space + f
     bspc node -t floating
 
-# cambiar foco entre tiling / floating
-super + space
-    bspc node -f last
+# cambiar a tiled
+super + space + t
+    bspc node -t tiled
+
 
 # foco direccional (flechas)
 super + {Left,Down,Up,Right}
@@ -104,7 +105,7 @@ super + shift + End
 
 # apagar
 super + shift + Delete
-    systemctl poweroff
+    sh ~/.config/rofi/applets/applets/archmenu.sh
 
 # ======================
 # Multimedia
