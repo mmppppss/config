@@ -91,3 +91,6 @@ polybar -c ~/.config/polybar/config.ini &
 
 # Fondo alternativo con feh (fallback)
 /usr/bin/feh --bg-fill ~/background.* &
+
+
+xsetroot -cursor_name left_ptr

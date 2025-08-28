@@ -101,7 +101,7 @@ super + shift + Home
 
 # suspender
 super + shift + End
-    systemctl suspend
+	/usr/bin/systemctl suspend
 
 # apagar
 super + shift + Delete
