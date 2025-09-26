@@ -77,7 +77,7 @@ super + m
 
 # ir a escritorio
 super + {1-9,0}
-    bspc desktop -f {1-9,10}
+    bspc desktop -f {1-9,0}
 
 # mover ventana a escritorio
 super + shift + {1-9,0}
