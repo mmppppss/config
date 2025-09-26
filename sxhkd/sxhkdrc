@@ -81,7 +81,7 @@ super + {1-9,0}
 
 # mover ventana a escritorio
 super + shift + {1-9,0}
-    bspc node -d {1-9,10}
+    bspc node -d {1-9,0}
 
 # ======================
 # Sistema
