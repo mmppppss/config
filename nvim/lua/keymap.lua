@@ -27,6 +27,7 @@ map('n', '<F5>g',':vsp |set nonu | set nornu | terminal lazygit <CR>i  <CR>')
 map('n', '<F5>l',':vsp |set nonu | set nornu | terminal fpc %;./$(echo % | sed \'s/.pas//\'); rm *.ppu *.o > /dev/null; <CR>')
 map('n', '<F5>t',':VimtexCompile<CR>')
 map('n', '<F5>ph',':vsp | terminal php % <CR>i')
+map('n', 'gj',':JsDoc <CR>')
 
 
 

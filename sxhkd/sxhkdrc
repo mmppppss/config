@@ -21,8 +21,6 @@ super + shift + f
     firefox
 super + shift + o
     opera
-super + shift + z
-    zen-browser
 super + shift + m
     thunderbird
 
@@ -119,21 +117,11 @@ XF86AudioLowerVolume
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-# volumen con Alt
-alt + {Next,Prior}
-    pactl set-sink-volume @DEFAULT_SINK@ {+5%,-5%}
-alt + Pause
-    pactl set-sink-mute @DEFAULT_SINK@ toggle
-
 # brillo
-XF86MonBrightnessUp
-    brightnessctl s +1%
-XF86MonBrightnessDown
-    brightnessctl s 1-
-super + Next
-    brightnessctl s +1%
-super + Prior
-    brightnessctl s 1-
+super + F3
+    brightnessctl s 10%-
+super + F4
+    brightnessctl s 10%+
 
 # ======================
 # Screenshots

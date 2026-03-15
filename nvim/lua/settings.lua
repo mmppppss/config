@@ -1,5 +1,5 @@
 --require("plugins.coc")
-require("plugins.treesitter")
+--require("plugins.treesitter")
 --require("plugins.coc-snip")
 require("plugins.lualine")
 require("plugins.gruvbox")

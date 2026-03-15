@@ -5,6 +5,7 @@ local plugins = {
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
 	"ellisonleao/gruvbox.nvim",
+	{ "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate"
@@ -27,11 +28,11 @@ local plugins = {
 		'windwp/nvim-autopairs',
 	},
 	"puremourning/vimspector",
-	{
-		"lukas-reineke/headlines.nvim",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		config = true, -- or `opts = {}`
-	},
+	--{
+	--	"lukas-reineke/headlines.nvim",
+	--	dependencies = "nvim-treesitter/nvim-treesitter",
+	--	config = true, -- or `opts = {}`
+	--},
 	'mattn/emmet-vim',
 	{
 		"L3MON4D3/LuaSnip",
@@ -49,14 +50,17 @@ local plugins = {
 			vim.g.vimtex_view_method = "zathura"
 		end
 	},
-
-	--	{
-	--		"folke/noice.nvim",
-	--		event = "VeryLazy",
-	--		dependencies = {
-	--			"MunifTanjim/nui.nvim",
-	--		}
-	--	},
+	{
+		"heavenshell/vim-jsdoc",
+		build = "make install",
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		}
+	},
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -143,9 +147,27 @@ local plugins = {
 
 	},
 	"preservim/nerdtree",
-
-
+	"ryanoasis/vim-devicons",
+	'mrloop/telescope-git-branch.nvim',
+	'f-person/git-blame.nvim',
+	{
+		"uga-rosa/ccc.nvim",
+		config = function()
+			require("ccc").setup()
+		end,
+	},
+	{
+		'MeanderingProgrammer/render-markdown.nvim',
+		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {},
+	}
 }
+
+
 require("lazy").setup(plugins, {
 	performance = {
 		cache = {
