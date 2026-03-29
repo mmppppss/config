@@ -129,7 +129,8 @@ super + F4
 
 # fullscreen
 Print
-    xfce4-screenshooter -f -s ~/Pictures/$(tr -dc A-Za-z0-9 </dev/urandom | head -c 10).png
+    hyprshot -m output -o ~/Pictures
+
 # región
 shift + Print
-    xfce4-screenshooter -r -s ~/Pictures/$(tr -dc A-Za-z0-9 </dev/urandom | head -c 10).png
+    hyprshot -m region -o ~/Pictures
