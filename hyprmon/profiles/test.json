@@ -1,0 +1,65 @@
+{
+  "name": "test",
+  "monitors": [
+    {
+      "name": "eDP-1",
+      "hardware_id": "AU Optronics/0x70EC",
+      "make": "AU Optronics",
+      "model": "0x70EC",
+      "PxW": 1366,
+      "PxH": 768,
+      "Hz": 60.02,
+      "Scale": 1,
+      "X": 0,
+      "Y": 0,
+      "Active": true,
+      "EDIDName": "AU Optronics 0x70EC",
+      "Modes": [
+        {
+          "W": 1366,
+          "H": 768,
+          "Hz": 60.02
+        },
+        {
+          "W": 1366,
+          "H": 768,
+          "Hz": 40.01
+        },
+        {
+          "W": 1280,
+          "H": 720,
+          "Hz": 60.02
+        },
+        {
+          "W": 1024,
+          "H": 768,
+          "Hz": 60.02
+        },
+        {
+          "W": 800,
+          "H": 600,
+          "Hz": 60.02
+        },
+        {
+          "W": 640,
+          "H": 480,
+          "Hz": 60.02
+        }
+      ],
+      "BitDepth": 10,
+      "ColorMode": "hdredid",
+      "SDRBrightness": 1,
+      "SDRSaturation": 1,
+      "VRR": 0,
+      "Transform": 0,
+      "IsMirrored": false,
+      "MirrorSource": "",
+      "MirrorTargets": [],
+      "Dragging": false,
+      "DragOffX": 0,
+      "DragOffY": 0
+    }
+  ],
+  "created_at": "2026-03-25T17:56:25.765740383-04:00",
+  "updated_at": "2026-03-25T17:56:25.765740593-04:00"
+}
