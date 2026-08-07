@@ -28,3 +28,12 @@ vim.cmd([[
 	highlight LineNrBelow guifg=#5c6370
 	highlight LineNr guifg=#fabd2f
 ]])
+
+vim.api.nvim_create_augroup("astro", { clear = true })
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	group = "astro",
+	pattern = "*.astro",
+	callback = function()
+		vim.bo.filetype = "astro"
+	end,
+})

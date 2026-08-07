@@ -1,5 +1,8 @@
 #! /bin/sh
 
+export PATH="$HOME/.local/bin:$PATH"
+export TERMINAL=kitty
+
 # ======================
 # Iniciar sxhkd y notificaciones
 # ======================
@@ -14,7 +17,7 @@ dunst -config ~/.config/dunst/dunstrc &
 # Teclado
 # ======================
 # setxkbmap es dvorak
-# setxkbmap es
+setxkbmap es
 
 # ======================
 # Monitores y escritorios
@@ -65,8 +68,6 @@ synclient TapButton1=1 &
 #picom -b --experimental-backends --backend glx --blur-method none --animations --animation-for-open-window zoom --vsync &
 picom &
 
-# Fondo de pantalla (tu script)
-/bin/bash $HOME/.config/scripts/setWall.sh &
 
 # Desactivar screen blanking y DPMS
 xset s off &
@@ -86,8 +87,5 @@ polybar -c ~/.config/polybar/config.ini &
 # ======================
 # Extras
 # ======================
-
-# Fondo alternativo con feh (fallback)
-# /usr/bin/feh --bg-fill ~/background.* &
 
 xsetroot -cursor_name left_ptr

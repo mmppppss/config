@@ -6,7 +6,9 @@ require("mason-lspconfig").setup({
         "html",       -- HTML
         "jsonls",     -- JSON
         "pyright",    -- Python
-        -- añade más si usas otros lenguajes
+        "kotlin_language_server",    -- Kotlin
+        "astro",                     -- Astro
     },
     automatic_installation = true,
+    automatic_enable = { exclude = { "ts_ls" } },
 })

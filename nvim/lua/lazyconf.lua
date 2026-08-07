@@ -77,16 +77,42 @@ local plugins = {
 
 	{
 		"neovim/nvim-lspconfig",
-		event = { "BufReadPre", "BufNewFile" }
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			local ts_root = vim.fn.expand("~/.nvm/versions/node/v24.11.1/lib/node_modules/typescript")
+			local ts_lib = ts_root .. "/lib"
+
+			local lazy_dir = vim.fn.stdpath("data") .. "/lazy"
+			local ts_ls_path = lazy_dir .. "/nvim-lspconfig/lsp/ts_ls.lua"
+
+			local ok, ts_cfg = pcall(dofile, ts_ls_path)
+			if ok and type(ts_cfg) == "table" then
+				ts_cfg.init_options = vim.tbl_deep_extend("force", ts_cfg.init_options or {}, {
+					typescript = { tsdk = ts_lib },
+					tsserver = { path = ts_root },
+				})
+				vim.lsp.config("ts_ls", ts_cfg)
+			else
+				vim.lsp.config("ts_ls", {
+					init_options = {
+						typescript = { tsdk = ts_lib },
+						tsserver = { path = ts_root },
+					},
+				})
+			end
+
+			local servers = { "ts_ls", "lua_ls", "html", "jsonls", "pyright", "kotlin_language_server", "astro" }
+			for _, lsp in ipairs(servers) do
+				vim.lsp.enable(lsp)
+			end
+		end
 	},
 	{
 		"williamboman/mason.nvim",
 		build = ":MasonUpdate",
-		config = true
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		config = true
 	},
 
 
@@ -156,15 +182,32 @@ local plugins = {
 			require("ccc").setup()
 		end,
 	},
+	-- {
+	-- 	'MeanderingProgrammer/render-markdown.nvim',
+	-- 	dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' },
+	-- 	---@module 'render-markdown'
+	-- 	---@type render.md.UserConfig
+	-- 	opts = {},
+	-- },
 	{
-		'MeanderingProgrammer/render-markdown.nvim',
-		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
-		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-		---@module 'render-markdown'
-		---@type render.md.UserConfig
-		opts = {},
-	}
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		config = function()
+			require("plugins.toggleterm")
+		end,
+	},
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		},
+		config = function()
+			require("plugins.neotree")
+		end,
+	},
 }
 
 

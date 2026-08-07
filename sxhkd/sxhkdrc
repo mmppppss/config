@@ -8,7 +8,7 @@
 
 # terminal
 super + Return
-    alacritty
+    kitty
 
 # gestores de archivos
 super + shift + t
