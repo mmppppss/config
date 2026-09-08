@@ -1,0 +1,136 @@
+#
+# sxhkdrc adaptado de tu config i3
+#
+
+# ======================
+# Lanzadores
+# ======================
+
+# terminal
+super + Return
+    kitty
+
+# gestores de archivos
+super + shift + t
+    thunar
+super + shift + k
+    caja
+
+# navegadores / apps
+super + shift + f
+    firefox
+super + shift + o
+    opera
+super + shift + m
+    thunderbird
+
+# rofi
+super + d
+    rofi -show drun
+super + shift + d
+    i3-dmenu-desktop
+super + Tab
+    rofi -show window
+
+# scripts personalizados
+super + Insert
+    bash ~/.config/scripts/setWall.sh
+
+# ======================
+# Manejo de ventanas
+# ======================
+
+# cerrar / matar ventana
+super + shift + q
+    bspc node -c
+
+# alternar monocle (fullscreen estilo i3)
+super + space
+    bspc node -t fullscreen
+
+# alternar flotante
+super + space + f
+    bspc node -t floating
+
+# cambiar a tiled
+super + space + t
+    bspc node -t tiled
+
+
+# foco direccional (flechas)
+super + {Left,Down,Up,Right}
+    bspc node -f {west,south,north,east}
+
+# mover ventana en dirección
+super + shift + {Left,Down,Up,Right}
+    bspc node -s {west,south,north,east}
+
+# layouts (bspwm solo monocle/tiled)
+super + m
+    bspc desktop -l next
+
+# ======================
+# Workspaces (desktops)
+# ======================
+
+# ir a escritorio
+super + {1-9,0}
+    bspc desktop -f {1-9,0}
+
+# mover ventana a escritorio
+super + shift + {1-9,0}
+    bspc node -d {1-9,0}
+
+# ======================
+# Sistema
+# ======================
+
+# recargar sxhkd
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# reiniciar bspwm
+super + shift + r
+    bspc wm -r
+
+# salir de sesión (nagbar i3 → reemplazo con rofi powermenu)
+super + shift + Home
+    sh ~/.config/rofi/applets/applets/powermenu.sh
+
+# suspender
+super + shift + End
+	/usr/bin/systemctl suspend
+
+# apagar
+super + shift + Delete
+    sh ~/.config/rofi/applets/applets/archmenu.sh
+
+# ======================
+# Multimedia
+# ======================
+
+# volumen
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +5%
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# brillo
+super + F3
+    brightnessctl s 10%-
+super + F4
+    brightnessctl s 10%+
+
+# ======================
+# Screenshots
+# ======================
+
+# fullscreen
+Print
+    hyprshot -m output -o ~/Pictures
+
+# región
+shift + Print
+    hyprshot -m region -o ~/Pictures

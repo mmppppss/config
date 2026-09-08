@@ -1,136 +1,195 @@
-#
-# sxhkdrc adaptado de tu config i3
-#
+# ══════════════════════════════════════════════
+#  SXHKD — espejo de Hyprland binds.lua para bspwm
+#  super = Win, shift, ctrl, alt
+# ══════════════════════════════════════════════
 
-# ======================
-# Lanzadores
-# ======================
+# ── Apps (igual que Hyprland) ─────────────────
 
-# terminal
+# Terminal
 super + Return
     kitty
 
-# gestores de archivos
+# Gestores de archivos
 super + shift + t
     thunar
 super + shift + k
     caja
 
-# navegadores / apps
+# Navegadores / mail
 super + shift + f
     firefox
 super + shift + o
     opera
-super + shift + m
+super + shift + e
     thunderbird
 
-# rofi
+# Rofi (drun + ventanas) — super+d / super+tab como en Hypr
 super + d
-    rofi -show drun
-super + shift + d
-    i3-dmenu-desktop
+    rofi -show drun -theme ~/.config/rofi/gruvbox-minimal.rasi
 super + Tab
-    rofi -show window
+    rofi -show window -theme ~/.config/rofi/gruvbox-minimal.rasi
+super + shift + d
+    rofi -show run -theme ~/.config/rofi/gruvbox-minimal.rasi
 
-# scripts personalizados
+# Cambiar wallpaper
 super + Insert
     bash ~/.config/scripts/setWall.sh
 
-# ======================
-# Manejo de ventanas
-# ======================
+# ── Ventanas / foco ───────────────────────────
 
-# cerrar / matar ventana
+# Cerrar (super+shift+q)
 super + shift + q
     bspc node -c
 
-# alternar monocle (fullscreen estilo i3)
+# Fullscreen monocle (super+space = igual que Hypr)
 super + space
     bspc node -t fullscreen
 
-# alternar flotante
-super + space + f
+# Flotante toggle (super+shift+space)
+super + shift + space
     bspc node -t floating
 
-# cambiar a tiled
-super + space + t
+# Tiled (volver a mosaico)
+super + shift + t; super + alt + t
     bspc node -t tiled
 
+# Pseudo-tiled
+super + alt + p
+    bspc node -t pseudo_tiled
 
-# foco direccional (flechas)
-super + {Left,Down,Up,Right}
-    bspc node -f {west,south,north,east}
+# Foco direccional
+super + {Left,Down,Up,Right,h,j,k,l}
+    bspc node -f {west,south,north,east,west,south,north,east}
 
-# mover ventana en dirección
-super + shift + {Left,Down,Up,Right}
-    bspc node -s {west,south,north,east}
+# Mover ventana (swap direccional)
+super + shift + {Left,Down,Up,Right,h,j,k,l}
+    bspc node -s {west,south,north,east,west,south,north,east}
 
-# layouts (bspwm solo monocle/tiled)
+# Preselección arquitectónica (divide limpio)
+super + ctrl + {Left,Down,Up,Right,h,j,k,l}
+    bspc node -p {west,south,north,east,west,south,north,east}
+
+# Cancelar preselección
+super + ctrl + space
+    bspc node -p cancel
+
+# Balance / rotar (líneas limpias)
+super + b
+    bspc node @/ -B
+super + r
+    bspc node @/ -R 90
+
+# Expandir / contraer (ratio como dwindle preserve_split)
+super + alt + {h,j,k,l}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# Layout next (super+m como en Hypr)
 super + m
     bspc desktop -l next
+super + shift + m
+    bspc desktop -l prev
 
-# ======================
-# Workspaces (desktops)
-# ======================
+# ── Workspaces 1..10 (nombres numéricos, igual orden que Hypr) ──
+super + {1,2,3,4,5,6,7,8,9,0}
+    bspc desktop -f {1,2,3,4,5,6,7,8,9,10}
 
-# ir a escritorio
-super + {1-9,0}
-    bspc desktop -f {1-9,0}
+super + shift + {1,2,3,4,5,6,7,8,9,0}
+    bspc node -d {1,2,3,4,5,6,7,8,9,10} --follow
 
-# mover ventana a escritorio
-super + shift + {1-9,0}
-    bspc node -d {1-9,0}
+# Llevar sin seguir foco
+super + ctrl + {1,2,3,4,5,6,7,8,9,0}
+    bspc node -d {1,2,3,4,5,6,7,8,9,10}
 
-# ======================
-# Sistema
-# ======================
+# Scroll entre workspaces con mouse
+super + {button4,button5}
+    bspc desktop -f {prev,next}
 
-# recargar sxhkd
+# ── Scratchpad (special:magic de Hypr → super+s) ──
+super + s
+    bspc node scratchpad -v; \
+    id=$(bspc query -N -n scratchpad); \
+    if [ -z "$id" ]; then kitty --class scratchpad; \
+    else bspc node "$id" --flag hidden=off -f; fi
+super + shift + s
+    bspc node -n scratchpad --flag hidden=on; \
+    bspc node -d newest --flag hidden=on 2>/dev/null; \
+    bspc node -c newest 2>/dev/null; true
+
+# ── Gaps / bordes al vuelo ────────────────────
+super + g
+    bspc config window_gap 10; bspc config border_width 2
+super + shift + g
+    bspc config window_gap 0; bspc config border_width 0
+super + plus
+    bspc config -d focused window_gap $(( $(bspc config -d focused window_gap) + 2 ))
+super + minus
+    gap=$(( $(bspc config -d focused window_gap) - 2 )); \
+    [ "$gap" -lt 0 ] && gap=0; bspc config -d focused window_gap $gap
+
+# ── Sistema ───────────────────────────────────
+
+# Recargar sxhkd + bspwm (super+escape / super+shift+r)
 super + Escape
-    pkill -USR1 -x sxhkd
-
-# reiniciar bspwm
+    pkill -USR1 -x sxhkd; notify-send "sxhkd" "recargado" 2>/dev/null &
 super + shift + r
-    bspc wm -r
+    bspc wm -r; notify-send "bspwm" "reiniciado" 2>/dev/null &
 
-# salir de sesión (nagbar i3 → reemplazo con rofi powermenu)
+# Powermenu
 super + shift + Home
     sh ~/.config/rofi/applets/applets/powermenu.sh
-
-# suspender
-super + shift + End
-	/usr/bin/systemctl suspend
-
-# apagar
 super + shift + Delete
     sh ~/.config/rofi/applets/applets/archmenu.sh
+super + shift + End
+    systemctl suspend
 
-# ======================
-# Multimedia
-# ======================
+# Salir bspwm
+super + ctrl + q
+    bspc quit
 
-# volumen
+# ── Multimedia (X11: pactl + brightnessctl + playerctl) ──
+
 XF86AudioRaiseVolume
     pactl set-sink-volume @DEFAULT_SINK@ +5%
 XF86AudioLowerVolume
     pactl set-sink-volume @DEFAULT_SINK@ -5%
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
+XF86AudioMicMute
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-# brillo
+XF86MonBrightnessUp
+    brightnessctl s +10%
+XF86MonBrightnessDown
+    brightnessctl s 10%-
+
+super + F4
+    brightnessctl s +10%
 super + F3
     brightnessctl s 10%-
-super + F4
-    brightnessctl s 10%+
 
-# ======================
-# Screenshots
-# ======================
+XF86AudioNext
+    playerctl next
+XF86AudioPlay
+    playerctl play-pause
+XF86AudioPause
+    playerctl play-pause
+XF86AudioPrev
+    playerctl previous
 
-# fullscreen
+# ── Screenshots (X11 — hyprshot no sirve aquí) ──
+# Instala una: sudo pacman -S maim xclip  (recomendado)
 Print
-    hyprshot -m output -o ~/Pictures
-
-# región
+    bash -c 'mkdir -p ~/Pictures; maim ~/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png 2>/dev/null || scrot ~/Pictures/%Y-%m-%d_%H-%M-%S.png 2>/dev/null || import -window root ~/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png'
 shift + Print
-    hyprshot -m region -o ~/Pictures
+    bash -c 'mkdir -p ~/Pictures; maim -s ~/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png 2>/dev/null || scrot -s ~/Pictures/%Y-%m-%d_%H-%M-%S.png 2>/dev/null'
+super + Print
+    bash -c 'mkdir -p ~/Pictures; maim -i $(xdotool getactivewindow) ~/Pictures/$(date +%Y-%m-%d_%H-%M-%S).png 2>/dev/null || scrot -u ~/Pictures/%Y-%m-%d_%H-%M-%S.png 2>/dev/null'
+
+# ── Utilidades ────────────────────────────────
+# Ocultar/mostrar polybar
+super + p
+    polybar-msg cmd toggle 2>/dev/null || ~/.config/polybar/launch.sh &
+
+# Flotar + centrar rápido
+super + c
+    bspc node -t floating; bspc node -v 0 0
