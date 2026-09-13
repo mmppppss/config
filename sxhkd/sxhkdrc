@@ -35,6 +35,10 @@ super + shift + d
 super + Insert
     bash ~/.config/scripts/setWall.sh
 
+# ── Ayuda (which-key estilo nvim) ─────────────
+super + h
+    ~/.config/scripts/whichkey.sh
+
 # ── Ventanas / foco ───────────────────────────
 
 # Cerrar (super+shift+q)
@@ -57,17 +61,17 @@ super + shift + t; super + alt + t
 super + alt + p
     bspc node -t pseudo_tiled
 
-# Foco direccional
-super + {Left,Down,Up,Right,h,j,k,l}
-    bspc node -f {west,south,north,east,west,south,north,east}
+# Foco direccional (super+h reservado para which-key)
+super + {Left,Down,Up,Right,j,k,l}
+    bspc node -f {west,south,north,east,south,north,east}
 
 # Mover ventana (swap direccional)
-super + shift + {Left,Down,Up,Right,h,j,k,l}
-    bspc node -s {west,south,north,east,west,south,north,east}
+super + shift + {Left,Down,Up,Right,j,k,l}
+    bspc node -s {west,south,north,east,south,north,east}
 
 # Preselección arquitectónica (divide limpio)
-super + ctrl + {Left,Down,Up,Right,h,j,k,l}
-    bspc node -p {west,south,north,east,west,south,north,east}
+super + ctrl + {Left,Down,Up,Right,j,k,l}
+    bspc node -p {west,south,north,east,south,north,east}
 
 # Cancelar preselección
 super + ctrl + space

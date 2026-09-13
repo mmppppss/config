@@ -29,7 +29,7 @@ bspc config gapless_monocle      true
 bspc config single_monocle       true
 
 # Reserva arriba para polybar (30px barra + 6 offset + margen)
-bspc config top_padding          40
+bspc config top_padding          36
 bspc config bottom_padding       4
 bspc config left_padding         4
 bspc config right_padding        4
@@ -81,7 +81,6 @@ bspc rule -a scratchpad sticky=on state=floating center=true rectangle=900x560+0
 nm-applet &
 xset s off; xset -dpms &
 xsetroot -cursor_name left_ptr &
-synclient TapButton1=1 2>/dev/null &
 xclip -selection clipboard 2>/dev/null &
 
 # Wallpaper (mismo que hyprpaper)
